@@ -40,16 +40,20 @@ var campos;
 var file;
 var line;
 var promises=[];
+
+for(var i=0;i<Tattva.Total;i++)
+{
+    dicBueno[i]={};
+    dicMalo[i]={};
+}
+
 for(var i=0;i<files.length;i++){
     
   promises.push(  readFile('Lang/'+files[i]).then((file)=>{
         console.log(files[i]);
         file=file.split('/n');
 
-        dicBueno[i]={};
-        dicMalo[i]={};
-    
-      for(var tattvaAPoner=0;tattvaAPoner<file.length;tattvaAPoner++){
+      for(var tattvaAPoner=0;tattvaAPoner<file.length&&tattvaAPoner<Tattva.Total;tattvaAPoner++){
             line=file[tattvaAPoner];
             campos=line.split(";");
             console.log(line);

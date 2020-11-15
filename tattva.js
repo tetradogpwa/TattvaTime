@@ -9,15 +9,18 @@ constructor(idTattva){
     const DOSHORAS=2*60*60*1000;
     const TIEMPOTATTVA=DOSHORAS/5;
 
-    var tattvaNames=["Akasha","Vayu","Tejas","Apas","Prithivi"];
+    
     var tiemposDominantes=["Tiempo_Akasha","Tiempo_Vayu","Tiempo_Tejas","Tiempo_Apas","Tiempo_Prithivi"];
-    this.Nombre=tattvaNames[idTattva];
+    this.Nombre=Tattva.Names[idTattva];
     this.Icono=this.Nombre+".jpg";
     this.TiempoDominante=tiemposDominantes[idTattva];
     this.IdTattva=idTattva;
     this.IdSiguiente=(idTattva++)%tattvaNames.length;
     this.Siguiente=TIEMPOTATTVA;
 }
+
+static Names=["Akasha","Vayu","Tejas","Apas","Prithivi"];
+static Total=Tattva.Names.length;
 
 static GetTattvaActual(lat,lon){
   return this.GetTattva(lat,lon,new Date());
