@@ -62,6 +62,8 @@ for(var i=0;i<files.length;i++){
             console.log(line);
             dicBueno[tattvaAPoner][nombre]=campos[BUENO].split(',');
             dicMalo[tattvaAPoner][nombre]=campos[MALO].split(',');
+
+            console.log(dicBueno[tattvaAPoner][nombre]);
         
      
         }
