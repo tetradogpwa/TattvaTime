@@ -63,7 +63,7 @@ for(var i=0;i<files.length;i++){
             dicBueno[tattvaAPoner][nombre]=campos[BUENO].split(',');
             dicMalo[tattvaAPoner][nombre]=campos[MALO].split(',');
 
-            console.log(dicBueno[tattvaAPoner][nombre]);
+       
         
      
         }
@@ -115,8 +115,10 @@ function UpdateGPS(){
 }
 
 function PonTattvaActual(){
-    var bueno=dicBueno[actualTattva.IdTattva][files[idiomaActual]];
-    var malo=dicMalo[actualTattva.IdTattva][files[idiomaActual]];
+    var idioma=files[idiomaActual];
+    console.log(idioma);
+    var bueno=dicBueno[actualTattva.IdTattva][idioma];
+    var malo=dicMalo[actualTattva.IdTattva][idioma];
     var imgPath=URL+"Imagenes/"+actualTattva.Icono;
     console.log(imgPath);
     SetList('lstBueno',bueno);
