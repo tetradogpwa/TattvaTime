@@ -69,14 +69,10 @@ Promise.all(promises).then(()=>{
 };
 
 function readFile(file){
-    return new Promise((resolve, reject) => {
-      var fr = new FileReader();  
+    return new Promise((resolve, reject) => { 
       var urlFile=URL+file;
       console.log(urlFile);
-      fr.onload = () => {
-        resolve(fr.result );
-      };
-      fetch(urlFile).then(f=>f.blob()).then(fr.readAsText);
+      fetch(urlFile).then(f=>f.text()).then(resolve);
     });
   }
 
