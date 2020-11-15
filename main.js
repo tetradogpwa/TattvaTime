@@ -74,7 +74,7 @@ function readFile(file){
       var urlFile=URL+file;
       console.log(urlFile);
       fr.onload = () => {
-        resolve(fr.result )
+        resolve(fr.result );
       };
       fr.readAsText(await fetch(urlFile));
     });
