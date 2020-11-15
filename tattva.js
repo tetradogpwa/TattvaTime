@@ -10,15 +10,16 @@ constructor(idTattva){
     const TIEMPOTATTVA=DOSHORAS/5;
 
     
-    var tiemposDominantes=["Tiempo_Akasha","Tiempo_Vayu","Tiempo_Tejas","Tiempo_Apas","Tiempo_Prithivi"];
+    
     this.Nombre=Tattva.Names[idTattva];
     this.Icono=this.Nombre+".jpg";
-    this.TiempoDominante=tiemposDominantes[idTattva];
+    this.TiempoDominante=Tattva.TiemposDominantes[idTattva];
     this.IdTattva=idTattva;
-    this.IdSiguiente=(idTattva++)%tattvaNames.length;
+    this.IdSiguiente=(idTattva++)%Tattva.Total;
     this.Siguiente=TIEMPOTATTVA;
 }
 
+static TiemposDominantes=["Tiempo_Akasha","Tiempo_Vayu","Tiempo_Tejas","Tiempo_Apas","Tiempo_Prithivi"];
 static Names=["Akasha","Vayu","Tejas","Apas","Prithivi"];
 static Total=Tattva.Names.length;
 
