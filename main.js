@@ -76,7 +76,7 @@ function readFile(file){
       fr.onload = () => {
         resolve(fr.result );
       };
-      fr.readAsText(await fetch(urlFile));
+      fetch(urlFile).then(fr.readAsText);
     });
   }
 
