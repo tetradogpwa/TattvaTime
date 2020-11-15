@@ -27,8 +27,6 @@ var dayMs = 1000 * 60 * 60 * 24,
     J2000 = 2451545;
 
 function toJulian(date) {
-    console.log("ToJulian");
-     console.log(date);
      return date.valueOf() / dayMs - 0.5 + J1970; 
     }
 function fromJulian(j)  { return new Date((j + 0.5 - J1970) * dayMs); }
@@ -144,8 +142,6 @@ function getSetJ(h, lw, phi, dec, n, M, L) {
 // the observer height (in meters) relative to the horizon
 
 SunCalc.getTimes = function (date, lat, lng, height) {
-    console.log("GetTimes");
-    console.log(date);
     height = height || 0;
 
     var lw = rad * -lng,

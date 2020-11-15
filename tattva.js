@@ -19,13 +19,11 @@ constructor(idTattva){
     this.Siguiente=TIEMPOTATTVA;
 }
 
-static GetTattva(lat,lon){
+static GetTattvaActual(lat,lon){
   return this.GetTattva(lat,lon,new Date());
 
 }
 static GetTattva(lat,lon,date){
-  console.log("GetTattva");
-  console.log(date);
     const DOSHORAS=2*60*60*1000;
     const TIEMPOTATTVA=DOSHORAS/5;
 

@@ -82,7 +82,7 @@ function CicloTatvva(){
     UpdateGPS();
     if(actualTattva==undefined)
         {
-            actualTattva=Tattva.GetTattva(lat,lon);
+            actualTattva=Tattva.GetTattvaActual(lat,lon);
         }
     else{
         actualTattva=new Tattva(actualTattva.IdSiguiente);     
