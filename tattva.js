@@ -33,7 +33,7 @@ static GetTattva(lat,lon,date){
 
      //calculo la hora
     //resto a la que tiene ahora
-    var sunrise=SunCalc.getTimes(date,lat,lon).sunrise;
+    var sunrise=SunCalc.getTimes(date,lat,lon).sunrise;//invalid date...
     //cada dos horas vuelve a ser el mismo tattw
     //al amanecer empieza el ciclo
     var diferencia=date-sunrise;//milisegundos
@@ -42,8 +42,7 @@ static GetTattva(lat,lon,date){
     var siguienteTattva=limpio%TIEMPOTATTVA;
     var tattva=new Tattva(tattvaActual);
     tattva.Siguiente=siguienteTattva;
-    console.log("Tattva");
-    console.log(sunrise);
+ 
 
     return tattva;
 
