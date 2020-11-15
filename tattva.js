@@ -42,6 +42,8 @@ static GetTattva(lat,lon,date){
     var siguienteTattva=limpio%TIEMPOTATTVA;
     var tattva=new Tattva(tattvaActual);
     tattva.Siguiente=siguienteTattva;
+    console.log("Tattva");
+    console.log(tattva);
 
     return tattva;
 
