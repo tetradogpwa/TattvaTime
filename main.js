@@ -50,15 +50,18 @@ for(var i=0;i<Tattva.Total;i++)
 for(var i=0;i<files.length;i++){
     
   promises.push(  readFile('Lang/',files[i]).then((file)=>{
-        console.log(file[1]);
-        file[0]=file[0].split('/n');
+      var lineas;
+      var nombre=file[1];
+      
+        console.log(nombre);
+        lineas=file[0].split('/n');
 
-      for(var tattvaAPoner=0;tattvaAPoner<file[0].length&&tattvaAPoner<Tattva.Total;tattvaAPoner++){
-            line=file[0][tattvaAPoner];
+      for(var tattvaAPoner=0;tattvaAPoner<lineas.length&&tattvaAPoner<Tattva.Total;tattvaAPoner++){
+            line=lineas[tattvaAPoner];
             campos=line.split(";");
             console.log(line);
-            dicBueno[tattvaAPoner][file[1]]=campos[BUENO].split(',');
-            dicMalo[tattvaAPoner][file[1]]=campos[MALO].split(',');
+            dicBueno[tattvaAPoner][nombre]=campos[BUENO].split(',');
+            dicMalo[tattvaAPoner][nombre]=campos[MALO].split(',');
         
      
         }
