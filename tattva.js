@@ -1,6 +1,6 @@
 /*https://github.com/mourner/suncalc */
 
-var SunCalc = require('./suncalc');
+window.Import('suncalc.js')
 
 class Tattva{
   

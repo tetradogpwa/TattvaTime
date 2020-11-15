@@ -1,5 +1,20 @@
-var Tattva = require('./tattva');
-var fs = require('fs');
+window.Import = (url) => {
+
+    var scriptNode = document.createElement("script");
+    scriptNode.setAttribute("language", "JavaScript");
+    scriptNode.setAttribute("type", "text/JavaScript");
+    scriptNode.setAttribute("src", url);
+    if (!window._MapImportScript)
+        window._MapImportScript = new Map();
+    //source:http://www.forosdelweb.com/f13/importar-archivo-js-dentro-javascript-387358/
+    if (!window._MapImportScript.has(url)) {
+        document.write(scriptNode.outerHTML);
+        window._MapImportScript.set(url, url);
+    }
+};
+
+
+window.Import('tattva.js');
 
 
 var lat;
@@ -7,8 +22,10 @@ var lon;
 var actualTattva;
 var dicBueno={};
 var dicMalo={};
-var files;
+var files=["ESP"];
 var idiomaActual=0;
+
+
 
 
 window.onload=()=>{
@@ -17,29 +34,48 @@ const BUENO=1;
 const MALO=2;  
 
 var campos;
-var tattvaActualLang;
-var lineReader = require('line-reader');
 
-files = fs.readdirSync('/Lang/');
-
-
+var file;
+var line;
+var promises=[];
 for(var i=0;i<files.length;i++){
-    console.log(files[i]);
-    dicBueno[i]={};
-    dicMalo[i]={};
-    tattvaActualLang=0;
-    lineReader.eachLine(files[i], function(line, last) {
-        campos=line.split(";");
-        console.log(line);
-        dicBueno[tattvaActualLang][files[i]]=campos[BUENO].split(',');
-        dicMalo[tattvaActualLang][files[i]]=campos[MALO].split(',');
-        tattvaActualLang++;
- 
-    });
-}
+    
+  promises.push(  readFile('Lang/'+files[i]).then((file)=>{
+        console.log(files[i]);
+        file=file.split('/n');
 
-CicloTatvva();
+        dicBueno[i]={};
+        dicMalo[i]={};
+    
+      for(var tattvaAPoner=0;tattvaAPoner<file.length;tattvaAPoner++){
+            line=file[tattvaAPoner];
+            campos=line.split(";");
+            console.log(line);
+            dicBueno[tattvaAPoner][files[i]]=campos[BUENO].split(',');
+            dicMalo[tattvaAPoner][files[i]]=campos[MALO].split(',');
+        
+     
+        }
+    }).catch(console.error));
+
+}
+Promise.all(promises).then(()=>{
+    CicloTatvva();
+});
+
+
 };
+
+function readFile(file){
+    return new Promise((resolve, reject) => {
+      var fr = new FileReader();  
+      fr.onload = () => {
+        resolve(fr.result )
+      };
+      fr.readAsText(fetch(file));
+    });
+  }
+
 function CicloTatvva(){
     UpdateGPS();
     if(actualTattva==undefined)
@@ -53,17 +89,49 @@ function CicloTatvva(){
     PonTattvaActual();
 }
 function UpdateGPS(){
+    try{
     //obtengo las inputs y lo convierto a numeros
-    var latActual;
-    var lonActual;
+    var latActual=parseFloat(document.getElementById('inpLat').innerText);
+    var lonActual=parseFloat(document.getElementById('inpLon').innerText);
 
     if(lat!=latActual||lon!=lonActual){
         actualTattva=undefined;
+        lat=latActual;
+        lon=lonActual;
+    }
+
+    }catch{
+        console.error("error al intentar hacer el parse de las coordenadas!!");
     }
 }
+
 function PonTattvaActual(){
     var bueno=dicBueno[tattvaActual.IdTattva][files[idiomaActual]];
     var malo=dicMalo[tattvaActual.IdTattva][files[idiomaActual]];
     var imgPath="/Imagenes/"+tattvaActual.Icono;
+    console.log(imgPath);
+    SetList('lstBueno',bueno);
+    SetList('lstMalo',malo);
+    document.getElementById('imgTattva').setAttribute('src',imgPath);
+
+
+}
+function SetList(idList,array){
+    var element;
+     //get list
+    var list=document.getElementById(idList);
+    //clear
+    while( list.firstChild ){
+        list.removeChild( list.firstChild );
+      }
+    //set elements
+    for(var i=0;i<array.length;i++){ 
+        //creo el elemento
+        element=window.createElement('li');
+        //le pongo el valor
+        element.innerText=array[i];
+        //lo añado a la lista
+        list.appendChild(element);
+    }
 
 }
