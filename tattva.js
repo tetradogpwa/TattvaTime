@@ -24,7 +24,7 @@ static Names=["Akasha","Vayu","Tejas","Apas","Prithivi"];
 static Total=Tattva.Names.length;
 
 static GetTattvaActual(lat,lon){
-  return this.GetTattva(lat,lon,new Date());
+  return Tattva.GetTattva(lat,lon,new Date());
 
 }
 static GetTattva(lat,lon,date){
