@@ -17,6 +17,8 @@ window.Import = (url) => {
 window.Import('tattva.js');
 
 
+const URL="https://tetradogpwa.github.io/TattvaTime/";
+
 var lat;
 var lon;
 var actualTattva;
@@ -72,7 +74,7 @@ function readFile(file){
       fr.onload = () => {
         resolve(fr.result )
       };
-      fr.readAsText(fetch(file));
+      fr.readAsText(fetch(URL+file));
     });
   }
 
