@@ -32,7 +32,6 @@ var idiomaActual=0;
 
 
 window.onload=()=>{
-console.log(new Date().valueOf());
 const BUENO=1;
 const MALO=2;  
 
