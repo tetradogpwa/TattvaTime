@@ -49,16 +49,16 @@ for(var i=0;i<Tattva.Total;i++)
 
 for(var i=0;i<files.length;i++){
     
-  promises.push(  readFile('Lang/'+files[i]).then((file)=>{
-        console.log(files[i]);
-        file=file.split('/n');
+  promises.push(  readFile('Lang/',files[i]).then((file)=>{
+        console.log(file[1]);
+        file[0]=file[0].split('/n');
 
-      for(var tattvaAPoner=0;tattvaAPoner<file.length&&tattvaAPoner<Tattva.Total;tattvaAPoner++){
-            line=file[tattvaAPoner];
+      for(var tattvaAPoner=0;tattvaAPoner<file[0].length&&tattvaAPoner<Tattva.Total;tattvaAPoner++){
+            line=file[0][tattvaAPoner];
             campos=line.split(";");
             console.log(line);
-            dicBueno[tattvaAPoner][files[i]]=campos[BUENO].split(',');
-            dicMalo[tattvaAPoner][files[i]]=campos[MALO].split(',');
+            dicBueno[tattvaAPoner][file[1]]=campos[BUENO].split(',');
+            dicMalo[tattvaAPoner][file[1]]=campos[MALO].split(',');
         
      
         }
@@ -72,11 +72,11 @@ Promise.all(promises).then(()=>{
 
 };
 
-function readFile(file){
+function readFile(path,file){
     return new Promise((resolve, reject) => { 
-      var urlFile=URL+file;
+      var urlFile=URL+path+file;
       console.log(urlFile);
-      fetch(urlFile).then(f=>f.text()).then(resolve);
+      fetch(urlFile).then(f=>f.text()).then(f=>resolve([f,file]));
     });
   }
 
