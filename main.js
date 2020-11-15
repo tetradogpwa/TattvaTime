@@ -116,7 +116,8 @@ function UpdateGPS(){
 
 function PonTattvaActual(){
     var idioma=files[idiomaActual];
-    console.log(idioma);
+
+    console.log(actualTattva);
     var bueno=dicBueno[actualTattva.IdTattva][idioma];
     var malo=dicMalo[actualTattva.IdTattva][idioma];
     var imgPath=URL+"Imagenes/"+actualTattva.Icono;
