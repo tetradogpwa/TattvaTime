@@ -13,11 +13,12 @@ window.Import = (url) => {
     }
 };
 
+window.URL="https://tetradogpwa.github.io/TattvaTime/";
 
-window.Import('tattva.js');
+window.Import(window.URL+'tattva.js');
 
 
-const URL="https://tetradogpwa.github.io/TattvaTime/";
+
 
 var lat;
 var lon;
@@ -110,7 +111,7 @@ function UpdateGPS(){
 function PonTattvaActual(){
     var bueno=dicBueno[tattvaActual.IdTattva][files[idiomaActual]];
     var malo=dicMalo[tattvaActual.IdTattva][files[idiomaActual]];
-    var imgPath="/Imagenes/"+tattvaActual.Icono;
+    var imgPath=URL+"Imagenes/"+tattvaActual.Icono;
     console.log(imgPath);
     SetList('lstBueno',bueno);
     SetList('lstMalo',malo);

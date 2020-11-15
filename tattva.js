@@ -1,6 +1,6 @@
 /*https://github.com/mourner/suncalc */
 
-window.Import('suncalc.js')
+window.Import(window.URL+'suncalc.js')
 
 class Tattva{
   
