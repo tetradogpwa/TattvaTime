@@ -80,7 +80,7 @@ function readFile(file){
 
 function CicloTatvva(){
     UpdateGPS();
-    if(actualTattva==undefined)
+    if(actualTattva===undefined)
         {
             actualTattva=Tattva.GetTattvaActual(lat,lon);
         }
@@ -108,9 +108,9 @@ function UpdateGPS(){
 }
 
 function PonTattvaActual(){
-    var bueno=dicBueno[tattvaActual.IdTattva][files[idiomaActual]];
-    var malo=dicMalo[tattvaActual.IdTattva][files[idiomaActual]];
-    var imgPath=URL+"Imagenes/"+tattvaActual.Icono;
+    var bueno=dicBueno[actualTattva.IdTattva][files[idiomaActual]];
+    var malo=dicMalo[actualTattva.IdTattva][files[idiomaActual]];
+    var imgPath=URL+"Imagenes/"+actualTattva.Icono;
     console.log(imgPath);
     SetList('lstBueno',bueno);
     SetList('lstMalo',malo);
