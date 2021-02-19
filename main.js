@@ -121,11 +121,12 @@ function PonTattvaActual(){
     var bueno=dicBueno[actualTattva.IdTattva][idioma];
     var malo=dicMalo[actualTattva.IdTattva][idioma];
     var imgPath=URL+"Imagenes/"+actualTattva.Icono;
-    console.log(imgPath);
+    var imgTattva= document.getElementById('imgTattva');
+console.log(imgPath);
     SetList('lstBueno',bueno);
     SetList('lstMalo',malo);
-    document.getElementById('imgTattva').setAttribute('src',imgPath);
-
+    imgTattva.setAttribute('src',imgPath);
+    imgTattva.setAttribute('title',actualTattva.Nmbre);
 
 }
 function SetList(idList,array){
