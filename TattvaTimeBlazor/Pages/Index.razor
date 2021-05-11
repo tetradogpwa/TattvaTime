@@ -1,0 +1,11 @@
+﻿@page "/"
+
+<TattvaViewer Latitude="41.7857" Longitude="3.0149" HoraActual="@(new DateTime(2021,5,11,22,07,0,0)-DesfaseMinutos)"/>
+<TattvaViewer Latitude="41.7857" Longitude="3.0149" HoraActual="@(new DateTime(2021,5,11,22,31,0,0)-DesfaseMinutos)" />
+<TattvaViewer Latitude="41.7857" Longitude="3.0149" HoraActual="@(new DateTime(2021,5,11,22,50,0,0)-DesfaseMinutos)" />
+<TattvaViewer Latitude="41.7857" Longitude="3.0149" HoraActual="@(new DateTime(2021,5,11,22,55,0,0)-DesfaseMinutos)" />
+<TattvaViewer Latitude="41.7857" Longitude="3.0149" HoraActual="@(new DateTime(2021,5,11,23,14,0,0)-DesfaseMinutos)" />
+
+@code{
+    TimeSpan DesfaseMinutos = TimeSpan.FromMinutes(0);
+}

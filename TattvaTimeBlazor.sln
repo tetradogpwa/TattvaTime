@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TattvaTimeBlazor", "TattvaTimeBlazor\TattvaTimeBlazor.csproj", "{3DFCA41C-2AAC-46A3-92F8-CE927E2ED64C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DFCA41C-2AAC-46A3-92F8-CE927E2ED64C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DFCA41C-2AAC-46A3-92F8-CE927E2ED64C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DFCA41C-2AAC-46A3-92F8-CE927E2ED64C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DFCA41C-2AAC-46A3-92F8-CE927E2ED64C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7AB32E4E-C4F4-46F4-A8A9-5AAC93D47209}
+	EndGlobalSection
+EndGlobal

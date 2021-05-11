@@ -1,0 +1,88 @@
+﻿@using System.Threading
+@using Innovative.SolarCalculator
+@implements IDisposable
+
+
+    <div style="background-color:@SubTattvaBackColor">
+        <h3>@TattvaName</h3>
+        <img src="@ImgTattvaActual" />
+        <h4>@Sunrise</h4>
+        <h4>@HoraActual</h4>
+        <h4>@GetInitNextTattva() </h4>
+    </div>
+
+
+@code {
+    const int MILISEGUNDOS_MINUTO = 60 * 1000;
+    const int MINUTOS_DOS_HORAS = 2 * 60;
+    const int DOS_HORAS =MINUTOS_DOS_HORAS * MILISEGUNDOS_MINUTO;
+    const int TOTAL_TATTVAS = 5;
+    const int CICLO_TATTVA = MINUTOS_DOS_HORAS / TOTAL_TATTVAS;
+    readonly int Ciclo_SubTattva = (int)TimeSpan.FromMinutes((CICLO_TATTVA*1.0) / TOTAL_TATTVAS).TotalMilliseconds;
+
+
+    static string[] TattvaNames { get; set; } = { "Akasha", "Vayu", "Tejas", "Apas", "Prithivi" };
+    static string[] TattvaColors { get; set; } = { "Gray", "Blue", "Red", "Violet", "Gold" };
+
+    int TattvaActualPos { get; set; }
+    int SubTattaActual { get; set; }
+    string ImgTattvaActual => $"./imgs/{TattvaName}.png";
+    string SubTattvaBackColor => TattvaColors[SubTattaActual];
+    string TattvaName => TattvaNames[TattvaActualPos];
+
+    DateTime Sunrise { get; set; }
+    DateTime InitTime { get; set; }
+    Timer TimerTattva { get; set; }
+
+    [Parameter] public double Latitude { get; set; }
+    [Parameter] public double Longitude { get; set; }
+    [Parameter] public DateTime HoraActual { get; set; } = DateTime.Now;
+
+
+
+    protected override void OnInitialized()
+    {
+
+        SolarTimes solarTimes = new SolarTimes(HoraActual.Date, Latitude, Longitude);
+        Sunrise = solarTimes.Sunrise;
+        InitTime = DateTime.Now;
+
+        TimerTattva = new Timer(NextTattva);
+        TimerTattva.Change(GetInitNextTattva() * MILISEGUNDOS_MINUTO, Ciclo_SubTattva);
+        TattvaActualPos = GetTattvaActual();
+        SetTattva();
+        Console.WriteLine($"Subtattva time {Ciclo_SubTattva}");
+        Console.WriteLine($"Sunrise {solarTimes.Sunrise}");
+        Console.WriteLine($"Hora actual {HoraActual}");
+
+    }
+    public void Dispose() => TimerTattva.Dispose();
+
+    void NextTattva(object state)
+    {
+        SetTattva();
+    }
+    void SetTattva()
+    {
+
+        TattvaActualPos = GetTattvaActual();
+        SubTattaActual = ( (CICLO_TATTVA-GetInitNextTattva())*MILISEGUNDOS_MINUTO) / Ciclo_SubTattva;
+        StateHasChanged();
+    }
+    int GetInitNextTattva() =>GetMinutoActual() % CICLO_TATTVA;
+    int GetTattvaActual()   => GetMinutoActual() / CICLO_TATTVA;
+
+    int GetMinutoActual()
+    {
+        int diferencia;
+        TimeSpan tiempoQueHaPasado = DateTime.Now - InitTime;
+        DateTime hora = HoraActual + tiempoQueHaPasado;
+        if (hora > Sunrise)
+            diferencia = new DateTime((hora - Sunrise).Ticks).TotalMinutes();
+        else diferencia = new DateTime((Sunrise-hora).Ticks).TotalMinutes();
+
+        Console.WriteLine($"Diferencia {diferencia}");
+
+        return diferencia % MINUTOS_DOS_HORAS;
+    }
+}
