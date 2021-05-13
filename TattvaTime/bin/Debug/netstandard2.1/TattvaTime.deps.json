@@ -1,0 +1,60 @@
+{
+  "runtimeTarget": {
+    "name": ".NETStandard,Version=v2.1/",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETStandard,Version=v2.1": {},
+    ".NETStandard,Version=v2.1/": {
+      "TattvaTime/1.0.0": {
+        "dependencies": {
+          "SolarCalculator": "3.0.6"
+        },
+        "runtime": {
+          "TattvaTime.dll": {}
+        }
+      },
+      "Angle/3.0.4": {
+        "runtime": {
+          "lib/netstandard2.1/Innovative.Geometry.Angle.dll": {
+            "assemblyVersion": "3.0.4.0",
+            "fileVersion": "3.0.4.0"
+          }
+        }
+      },
+      "SolarCalculator/3.0.6": {
+        "dependencies": {
+          "Angle": "3.0.4"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Innovative.SolarCalculator.dll": {
+            "assemblyVersion": "3.0.6.0",
+            "fileVersion": "3.0.6.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TattvaTime/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Angle/3.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iDFW4YC0rZCLGTG4ANu2IXXHc5lL/T16++A7CBTLmn5Gd6qb4VzZGIu1lN5NuxHZbW3+LwtrXi2d7tilw/QQVA==",
+      "path": "angle/3.0.4",
+      "hashPath": "angle.3.0.4.nupkg.sha512"
+    },
+    "SolarCalculator/3.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZL2yiawGB0sSJY1jgcs6gimz9M8/M+J2nlqYZl4SY5RqIGHpFrO2YzSA4nZN645jrqKsNG/OpYawwQCj2v/9Gg==",
+      "path": "solarcalculator/3.0.6",
+      "hashPath": "solarcalculator.3.0.6.nupkg.sha512"
+    }
+  }
+}

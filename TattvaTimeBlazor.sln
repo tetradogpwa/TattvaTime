@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TattvaTimeBlazor", "TattvaTimeBlazor\TattvaTimeBlazor.csproj", "{3DFCA41C-2AAC-46A3-92F8-CE927E2ED64C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TattvaTimeBlazor", "TattvaTimeBlazor\TattvaTimeBlazor.csproj", "{3DFCA41C-2AAC-46A3-92F8-CE927E2ED64C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TattvaTime", "TattvaTime\TattvaTime.csproj", "{A7EA5BB8-665D-4FC9-9D23-544CAE89E5DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3DFCA41C-2AAC-46A3-92F8-CE927E2ED64C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DFCA41C-2AAC-46A3-92F8-CE927E2ED64C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DFCA41C-2AAC-46A3-92F8-CE927E2ED64C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7EA5BB8-665D-4FC9-9D23-544CAE89E5DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7EA5BB8-665D-4FC9-9D23-544CAE89E5DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7EA5BB8-665D-4FC9-9D23-544CAE89E5DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7EA5BB8-665D-4FC9-9D23-544CAE89E5DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
