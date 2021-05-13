@@ -1,9 +1,0 @@
-C:\Users\tetra\source\repos\TattvaTime\TattvaTime\bin\Debug\netstandard2.1\TattvaTime.deps.json
-C:\Users\tetra\source\repos\TattvaTime\TattvaTime\bin\Debug\netstandard2.1\TattvaTime.dll
-C:\Users\tetra\source\repos\TattvaTime\TattvaTime\bin\Debug\netstandard2.1\TattvaTime.pdb
-C:\Users\tetra\source\repos\TattvaTime\TattvaTime\obj\Debug\netstandard2.1\TattvaTime.csprojAssemblyReference.cache
-C:\Users\tetra\source\repos\TattvaTime\TattvaTime\obj\Debug\netstandard2.1\TattvaTime.AssemblyInfoInputs.cache
-C:\Users\tetra\source\repos\TattvaTime\TattvaTime\obj\Debug\netstandard2.1\TattvaTime.AssemblyInfo.cs
-C:\Users\tetra\source\repos\TattvaTime\TattvaTime\obj\Debug\netstandard2.1\TattvaTime.csproj.CoreCompileInputs.cache
-C:\Users\tetra\source\repos\TattvaTime\TattvaTime\obj\Debug\netstandard2.1\TattvaTime.dll
-C:\Users\tetra\source\repos\TattvaTime\TattvaTime\obj\Debug\netstandard2.1\TattvaTime.pdb
