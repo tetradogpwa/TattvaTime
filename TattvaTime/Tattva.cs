@@ -5,18 +5,15 @@ namespace TattvaTime
 {
     public class Tattva
     {
-        const int MILISEGUNDOS_MINUTO = 60 * 1000;
-        const int MINUTOS_DOS_HORAS = 2 * 60;
-        const int MINUTOS_MEDIO_DIA = MINUTOS_DOS_HORAS * 6;
-        const int DOS_HORAS = MINUTOS_DOS_HORAS * MILISEGUNDOS_MINUTO;
+        const int SEGUNDOS_DOS_HORAS = 2 * 60*60;
         const int TOTAL_TATTVAS = 5;
-        const int CICLO_TATTVA = MINUTOS_DOS_HORAS / TOTAL_TATTVAS;
-        static double MinutosSubTattva { get; set; } = (CICLO_TATTVA * 1.0) / TOTAL_TATTVAS;
+        public const int CICLO_TATTVA = SEGUNDOS_DOS_HORAS / TOTAL_TATTVAS;
+        public const int CICLO_SUBTATTVA =(int)((CICLO_TATTVA * 1.0 / TOTAL_TATTVAS));
 
-        public static long CicloSubTattva { get; private set; } = TimeSpan.FromMinutes(MinutosSubTattva).Ticks;
-
-
-        public static string[] TattvaNames { get; private set; } = { "Akasha", "Vayu", "Tejas", "Apas", "Prithivi" };
+        public enum Name
+        {
+            Akasha, Vayu, Tejas, Apas, Prithivi 
+        }
         public static string[] TattvaColors { get; private set; } = { "Gray", "Blue", "Red", "Violet", "Gold" };
 
         public int TattvaActual { get; private set; }
@@ -25,8 +22,8 @@ namespace TattvaTime
 
         public string TattvaColor => TattvaColors[TattvaActual];
         public string SubTattvaColor => TattvaColors[SubTattvaActual];
-        public string TattvaName => TattvaNames[TattvaActual];
-        public string SubTattvaName => TattvaNames[SubTattvaActual];
+        public Name TattvaName =>(Name) TattvaActual;
+        public Name SubTattvaName =>(Name)SubTattvaActual;
 
         public DateTime Sunrise { get; private set; }
 
@@ -34,7 +31,7 @@ namespace TattvaTime
         public double Longitud { get; private set; }
         public double Latitud { get; private set; }
 
-        int TotalMinutosSunrise => Sunrise.TotalMinutes();
+        int TotalSegundosSunrise => Sunrise.TotalSeconds();
         DateTime InitTime { get; set; }
 
         public Tattva(DateTime initTime, double latitude, double longitude)
@@ -45,7 +42,7 @@ namespace TattvaTime
             Longitud = longitude;
             UpdateSunrise();
             InitTime = DateTime.Now;
-              NextSubTattvaTicks= Update();
+            NextSubTattvaTicks = Update();
         }
 
         private void UpdateSunrise()
@@ -53,13 +50,14 @@ namespace TattvaTime
             Sunrise = new SolarTimes(Time.Date, Latitud, Longitud).Sunrise;
         }
 
-        public long Update(DateTime horaDespues = default)
+        public long Update(DateTime horaDespues = default(DateTime))
         {
             TimeSpan diferencia;
-            int totalMinutosRelativos;
-            int diferenciaMinutos;
-            int minutosRelativos;
-            if (Equals(horaDespues, default))
+            int totalSegundosRelativos;
+            int diferenciaSegundos;
+            int segundosRelativos;
+            int segundosSubTattva;
+            if (Equals(horaDespues, default(DateTime)))
             {
                 //quiere la direfencia con la hora real
                 diferencia = DateTime.Now - InitTime;
@@ -69,37 +67,37 @@ namespace TattvaTime
             {
                 diferencia = horaDespues - Time;
             }
-            Time = Time + TimeSpan.FromMinutes(diferencia.TotalMinutes());
-            totalMinutosRelativos = Time.TotalMinutes();
+            Time = Time + TimeSpan.FromSeconds(diferencia.TotalSeconds());
+            totalSegundosRelativos = Time.TotalSeconds();
 
             UpdateSunrise();
-            diferenciaMinutos = totalMinutosRelativos - TotalMinutosSunrise;
-            if (diferenciaMinutos < 0)
-            {
+            diferenciaSegundos = totalSegundosRelativos - TotalSegundosSunrise;
+            if (diferenciaSegundos < 0)
+            {//esta mal el tattva y el subTattva cuando cambia de dia
                 //quiere decir que es la madrugada del dia siguiente
-                diferenciaMinutos *= -1;
-                minutosRelativos = diferenciaMinutos % MINUTOS_DOS_HORAS;
+                //diferenciaSegundos *= -1;
+                //segundosRelativos = diferenciaSegundos % SEGUNDOS_DOS_HORAS;
+                //TattvaActual =TOTAL_TATTVAS -1 - (segundosRelativos / CICLO_TATTVA);
 
 
+                segundosRelativos = (diferenciaSegundos*-1) % SEGUNDOS_DOS_HORAS;
+                TattvaActual = segundosRelativos / CICLO_TATTVA;
 
             }
             else
             {
                 //quiere decir que aun no ha llegado a media noche
-                minutosRelativos = diferenciaMinutos % MINUTOS_DOS_HORAS;
+                segundosRelativos = diferenciaSegundos % SEGUNDOS_DOS_HORAS;
+                TattvaActual = segundosRelativos / CICLO_TATTVA;
 
             }
 
-            TattvaActual = minutosRelativos / CICLO_TATTVA;
-
-            if (diferenciaMinutos < 0)
-                TattvaActual = TOTAL_TATTVAS - TattvaActual;
-
-            SubTattvaActual = ((int)((minutosRelativos % CICLO_TATTVA) / MinutosSubTattva)) % TOTAL_TATTVAS;
-            NextSubTattvaTicks= ((int)((minutosRelativos % CICLO_TATTVA) % MinutosSubTattva))*60*1000;
+            segundosSubTattva = ((int)((segundosRelativos % CICLO_TATTVA) / CICLO_SUBTATTVA));
+            SubTattvaActual = segundosSubTattva % TOTAL_TATTVAS;
+            NextSubTattvaTicks = segundosSubTattva * 1000;
             return NextSubTattvaTicks;
 
         }
-    
+
     }
 }

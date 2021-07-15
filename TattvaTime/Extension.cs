@@ -6,7 +6,7 @@ namespace TattvaTime
 {
     public static class Extension
     {
-        public static int TotalMinutes(this TimeSpan time) => (time.Hours * 60) + time.Minutes;
-        public static int TotalMinutes(this DateTime time) => (time.Hour * 60) + time.Minute;
+        public static int TotalSeconds(this TimeSpan time) => (time.Hours * 60*60) + (time.Minutes*60)+time.Seconds;
+        public static int TotalSeconds(this DateTime time) => (time.Hour * 60 * 60) + (time.Minute * 60) + time.Second;
     }
 }

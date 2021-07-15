@@ -1,11 +1,22 @@
 ﻿@page "/"
 
-<TattvaViewer Latitude="41.7857" Longitude="3.0149" HoraActual="@(new DateTime(2021,5,11,22,07,0,0)-DesfaseMinutos)"/>
-<TattvaViewer Latitude="41.7857" Longitude="3.0149" HoraActual="@(new DateTime(2021,5,11,22,31,0,0)-DesfaseMinutos)" />
-<TattvaViewer Latitude="41.7857" Longitude="3.0149" HoraActual="@(new DateTime(2021,5,11,22,50,0,0)-DesfaseMinutos)" />
-<TattvaViewer Latitude="41.7857" Longitude="3.0149" HoraActual="@(new DateTime(2021,5,11,22,55,0,0)-DesfaseMinutos)" />
-<TattvaViewer Latitude="41.7857" Longitude="3.0149" HoraActual="@(new DateTime(2021,5,11,23,14,0,0)-DesfaseMinutos)" />
+
+@*@for (int i = 0; i < 15; i++)
+{
+<TattvaViewer Latitude="41.7857" Longitude="3.0149" HoraActual="@(DateTime.Now+TimeSpan.FromTicks(Tattva.CicloSubTattva*i))" TimerOn="false" />
+}*@
+
+@for (int i = 0; i < Total; i++)
+{
+
+    <TattvaViewer Latitude="41.7833" Longitude="3.0333" HoraActual="@GetTime(i)" TimerOn="false" />
+}
+
 
 @code{
-    TimeSpan DesfaseMinutos = TimeSpan.FromMinutes(0);
+    TimeSpan SubTattva => TimeSpan.FromSeconds(Tattva.CICLO_SUBTATTVA);
+    DateTime TimeInit => new DateTime(2021, 7, 15, 10, 59, 41);
+    int Total => 12*Enum.GetValues(typeof(Tattva.Name)).Length* Enum.GetValues(typeof(Tattva.Name)).Length;
+
+    DateTime GetTime(int pos,int segundos=0) => TimeInit + (SubTattva * pos)+TimeSpan.FromSeconds(segundos);
 }

@@ -15,7 +15,8 @@
 
     Timer TimerTattva { get; set; }
     Tattva Tattva { get; set; }
-    string ImgTattvaActual => $"./imgs/{Tattva.TattvaName}.png";
+    string ImgTattvaActual => $"./imgs/{Tattva.TattvaName.ToString()}.png";
+
     [Parameter] public double Latitude { get; set; }
     [Parameter] public double Longitude { get; set; }
     [Parameter] public DateTime HoraActual { get; set; } = DateTime.Now;
@@ -30,7 +31,7 @@
         if (TimerOn)
         {
             TimerTattva = new Timer(NextTattva);
-            TimerTattva.Change(Tattva.NextSubTattvaTicks, Tattva.CicloSubTattva);
+            TimerTattva.Change(Tattva.NextSubTattvaTicks, Tattva.CICLO_SUBTATTVA*1000);
         }
         StateHasChanged();
 
